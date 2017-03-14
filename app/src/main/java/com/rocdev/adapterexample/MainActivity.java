@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // Vul lijst met een aantal auto's
+    // hulpmethode om lijst met een aantal auto's te vullen
     private void vulAutoLijst() {
         autos = new ArrayList<>();
         autos.add(new Auto("Fiat", 5590.95));
