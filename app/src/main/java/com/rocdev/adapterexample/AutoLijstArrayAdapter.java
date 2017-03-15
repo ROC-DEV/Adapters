@@ -31,7 +31,7 @@ public class AutoLijstArrayAdapter extends ArrayAdapter<Auto> {
      */
     public AutoLijstArrayAdapter(Context context, List<Auto> autoList) {
         super(context, 0, autoList);
-        inflater = LayoutInflater.from(getContext());
+        inflater = LayoutInflater.from(context);
     }
 
     /**
