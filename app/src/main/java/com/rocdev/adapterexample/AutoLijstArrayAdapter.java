@@ -51,11 +51,14 @@ public class AutoLijstArrayAdapter extends ArrayAdapter<Auto> {
         }
         TextView merkTextView = (TextView) view.findViewById(R.id.merk);
         TextView prijsTextView = (TextView) view.findViewById(R.id.prijs);
-
         merkTextView.setText(auto.getMerk());
+
+        // set scheidingstekens voor DecimalFormat
         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
         symbols.setDecimalSeparator(',');
         symbols.setGroupingSeparator('.');
+
+        // formatteer prijs string met scheidingstekens
         DecimalFormat df = new DecimalFormat("€ #,##0.00", symbols);
         prijsTextView.setText(df.format(auto.getPrijs()));
         return view;
