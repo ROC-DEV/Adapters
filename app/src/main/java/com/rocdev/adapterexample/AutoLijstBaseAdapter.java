@@ -25,6 +25,7 @@ public class AutoLijstBaseAdapter extends BaseAdapter {
     // Constructor
     public AutoLijstBaseAdapter(Context context, ArrayList<Auto> autoLijst) {
         this.autoLijst = autoLijst;
+
         inflater = LayoutInflater.from(context);
     }
 
@@ -74,7 +75,16 @@ public class AutoLijstBaseAdapter extends BaseAdapter {
         TextView prijsTextView = (TextView) view.findViewById(R.id.prijs);
         Auto auto = autoLijst.get(position);
         merkTextView.setText(auto.getMerk());
+        prijsTextView.setText(maakPrijsFormat(auto.getPrijs()));
+        return view;
+    }
 
+    /**
+     * hulpmethode om van double prijs een geformatteerde String te maken
+     * @param prijs de prijs van de auto
+     * @return gefomatteerde String
+     */
+    private String maakPrijsFormat(double prijs) {
         // set scheidingstekens voor DecimalFormat
         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
         symbols.setDecimalSeparator(',');
@@ -82,7 +92,6 @@ public class AutoLijstBaseAdapter extends BaseAdapter {
 
         // formatteer prijs string met scheidingstekens
         DecimalFormat decimalFormat = new DecimalFormat("€ #,##0.00", symbols);
-        prijsTextView.setText(decimalFormat.format(auto.getPrijs()));
-        return view;
+        return decimalFormat.format(prijs);
     }
 }

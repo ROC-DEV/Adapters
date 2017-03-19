@@ -52,15 +52,23 @@ public class AutoLijstArrayAdapter extends ArrayAdapter<Auto> {
         TextView merkTextView = (TextView) view.findViewById(R.id.merk);
         TextView prijsTextView = (TextView) view.findViewById(R.id.prijs);
         merkTextView.setText(auto.getMerk());
+        prijsTextView.setText(maakPrijsFormat(auto.getPrijs()));
+        return view;
+    }
 
+    /**
+     * hulpmethode om van double prijs een geformatteerde String te maken
+     * @param prijs de prijs van de auto
+     * @return gefomatteerde String
+     */
+    private String maakPrijsFormat(double prijs) {
         // set scheidingstekens voor DecimalFormat
         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
         symbols.setDecimalSeparator(',');
         symbols.setGroupingSeparator('.');
 
         // formatteer prijs string met scheidingstekens
-        DecimalFormat df = new DecimalFormat("€ #,##0.00", symbols);
-        prijsTextView.setText(df.format(auto.getPrijs()));
-        return view;
+        DecimalFormat decimalFormat = new DecimalFormat("€ #,##0.00", symbols);
+        return decimalFormat.format(prijs);
     }
 }
